@@ -14,7 +14,7 @@ const showUnuversData = (data) => {
         cardContainer.innerHTML = '';
         data.forEach(element => {
                 // console.log(element)
-                const { features, name, image, published_in } = element;
+                const { features, name, image, published_in,id } = element;
 
                 const createDiv = document.createElement('div');
                 //        createDiv.classList.add('col') 
@@ -40,7 +40,7 @@ const showUnuversData = (data) => {
         </div>
 
         <div>
-         <i onclick = "singleDataLoad()" class="fa-solid bg-info rounded-5 p-2 fa-arrow-right  data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+         <i onclick = "singleDataLoad('${id}')" class="fa-solid bg-info rounded-5 p-2 fa-arrow-right"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
         </div>
         
 </div>
@@ -62,12 +62,84 @@ const showAllData = () => {
 }
 
 const singleDataLoad = (id) => {
-    fetch(` https://openapi.programming-hero.com/api/ai/tool/${id}`)
-    .then(res => res.json())
-    .then(data => console.log(data))
+   const URL = ` https://openapi.programming-hero.com/api/ai/tool/${id}`
+//    console.log(URL)
+   fetch(URL)
+   .then(res => res.json())
+   .then(data => showSimgleData(data.data))
+   
 }
 
-singleDataLoad()
+const showSimgleData = (singleData) => {
+        console.log(singleData)
+
+        const {accuracy, description, features, integrations,pricing, } = singleData;
+
+        document.getElementById('modal-body').innerHTML = `
+        
+        <div class="row ">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">${description}</h5>
+                      
+                      <div class = "d-flex justify-content-evenly container align-items-center gap-1 p-1">
+
+                      <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
+                      <small class = "m-0 p-0">${pricing[0].price}</small>
+                      <small class = "m-0 p-0">${pricing[0].plan}</small>
+                      </div>
+
+                      <div class = "  bg-warning-subtle text-center p-1 shadow-lg rounded">
+                      <small class = "m-0 p-0">${pricing[1].price}</small>
+                      <small class = "m-0 p-0">${pricing[1].plan}</small>
+                      </div>
+
+                      <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
+                      <small class = "m-0 p-0">${pricing[2].price.slice(0, 10)}</small>
+                      <small class = "m-0 p-0">${pricing[2].plan}</small>
+                      </div>
+                      
+                      
+                      <div></div>
+                      <div></div>
+                      
+                      </div>
+
+
+                      <div></div>
+                      
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Special title treatment</h5>
+                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+       
+       
+        `
+
+}
+ 
+ 
   
                
 
