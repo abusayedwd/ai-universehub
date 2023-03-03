@@ -20,13 +20,18 @@
         </header>
 
         <main>
+                <div id="spinner" class="d-flex justify-content-center d-none">
+                        <div class="spinner-border mt-5" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
                 <!-- dynamic show card section  -->
                 <section class="container">
 
               <div id="card-container" class="row row-cols-1 row-cols-md-3 g-4 mt-3 h-50">
 
                </div>
-               <div class="text-center mt-3">
+               <div id="showall-btn" class="text-center mt-3 d-none">
                 <button  onclick="showAllData()" class="btn btn btn-warning ">Show more</button>
                </div>
         </section>

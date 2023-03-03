@@ -1,11 +1,14 @@
 // console.log('hello guys')
 
+document.getElementById('spinner').classList.remove("d-none");
 const universDataLoad = async () => {
         const url = `https://openapi.programming-hero.com/api/ai/tools`
 
         const res = await fetch(url);
         const data = await res.json();
         showUnuversData(data.data.tools.slice(0, 6))
+        document.getElementById('spinner').classList.add("d-none");
+        document.getElementById('showall-btn').classList.remove("d-none")
 }
 
 const showUnuversData = (data) => {
@@ -57,7 +60,8 @@ const showAllData = () => {
         fetch('https://openapi.programming-hero.com/api/ai/tools')
         .then(res=> res.json())
         .then(data => {
-                showUnuversData(data.data.tools);     
+                showUnuversData(data.data.tools); 
+                document.getElementById('showall-btn').classList.add('d-none');    
         })
 }
 // show singledata ui.....
@@ -74,7 +78,7 @@ const singleDataLoad = (id) => {
 const showSimgleData = (singleData) => {
         console.log(singleData)
 
-        const {accuracy, description, integrations,pricing, } = singleData;
+        const {accuracy, description, integrations, pricing } = singleData;
 
         document.getElementById('modal-body').innerHTML = `
         
@@ -116,9 +120,9 @@ const showSimgleData = (singleData) => {
          
                 <div>
                         <h5>Integration</h5>
-                        <li class = "text-sm"><small>${integrations[0]}</small></li>
-                        <li class = "text-sm"><small>${integrations[1]}</small></li>
-                        <li class = "text-sm"><small>${integrations[2]}</small></li>
+                        <li class = "text-sm"><small>${integrations[0] ? integrations[0] : "not data"}</small></li>
+                        <li class = "text-sm"><small>${integrations[1]  ? integrations[1] : "not data"}</small></li>
+                        <li class = "text-sm"><small>${integrations[2]  ? integrations[2] : "not data"}</small></li>
                         
                          
                 </div>
@@ -133,7 +137,7 @@ const showSimgleData = (singleData) => {
                      
                     <div>
                     <img src=" ${singleData.image_link[0]}" class="card-img-top " alt="...">
-                    <div class = " text-warning  p-2 rounded " style ="position:absolute; top: 46px; right:46px;">${singleData.accuracy.score? accuracy.score : ""}</div>
+                    <div class = " text-warning bg-danger p-1 rounded " style ="position:absolute; top: 40px; right:50px;">${singleData.accuracy.score? accuracy.score : "0"}% accuracy</div>
                     </div>
                    
                  
