@@ -78,22 +78,23 @@ const showSimgleData = (singleData) => {
 
         document.getElementById('modal-body').innerHTML = `
         
-        <div class="row ">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <div class="card">
-                    <div class="card-body">
+        <div class="row row-cols-1 row-cols-mg-2 ">
+                <div class="col-sm-6 mb-3 mb-sm-0 ">
+                  <div class="card h-100 p-3">
+                    <div class="card-body p-3">
                       <h5 class="card-title">${description}</h5>
                       
         <div class = "d-flex justify-content-evenly container align-items-center gap-1 mt-3 p-1">
 
                       <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <p class = "m-0 fw-bold p-0">${pricing[0].price} </p>
-                      <p class = "m-0 fw-bold p-0">${pricing[0].plan }</p>
+                      <p class = "m-0 fw-bold p-0">
+                      ${pricing[0].price ? pricing[0].price : "cost of free"} </p>
+                      <p class = "m-0 fw-bold p-0">${pricing[0].plan ? pricing[0].plan : "noooo" }</p>
                       </div>
 
                       <div class = "  bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <p class = "m-0 fw-bold p-0">${pricing[1].price}</p>
-                      <p class = "m-0 fw-bold p-0">${pricing[1].plan}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing[1].price ? pricing[1].price : "no data"}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing[1].plan? pricing[1].plan : "not data"}</p>
                       </div>
 
                       <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
@@ -115,40 +116,23 @@ const showSimgleData = (singleData) => {
          
                 <div>
                         <h5>Integration</h5>
-                        <li class = "text-sm"><small>${integrations[0]}</small></li>
-                        <li class = "text-sm"><small>${integrations[1]}</small></li>
-                        <li class = "text-sm"><small>${integrations[2]}</small></li>
+                        <li class = "text-sm"><small>${integrations[0]?integrations[0] : "not data"}</small></li>
+                        <li class = "text-sm"><small>${integrations[1]?integrations[0] : "not data"}</small></li>
+                        <li class = "text-sm"><small>${integrations[2]?integrations[0] : "not data"}</small></li>
                         
                          
                 </div>
         </div>
-
-                      
-                       
-
-
-                      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-      
+  
     </div>
   </div>
 </div>
-                <div class="col-sm-6">
-                  <div class="card">
+                <div class="col-sm-6 ">
+                  <div class="card h-100 p-3">
                     <div class="card-body">
-                      <h5 class="card-title">Special title treatment</h5>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      
+                    <img src=" ${singleData.image_link[0]}" class="card-img-top" alt="...">
+                    <h5 class = "text-center mt-3">${singleData.input_output_examples[0].input}</h5>
+                    <p class = "text-center mt-3">${singleData.input_output_examples[1].input}</p>
                     </div>
                   </div>
                 </div>
