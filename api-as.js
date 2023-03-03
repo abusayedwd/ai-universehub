@@ -60,6 +60,7 @@ const showAllData = () => {
                 showUnuversData(data.data.tools);     
         })
 }
+// show singledata ui.....
 
 const singleDataLoad = (id) => {
    const URL = ` https://openapi.programming-hero.com/api/ai/tool/${id}`
@@ -73,7 +74,7 @@ const singleDataLoad = (id) => {
 const showSimgleData = (singleData) => {
         console.log(singleData)
 
-        const {accuracy, description, features, integrations,pricing, } = singleData;
+        const {accuracy, description, integrations,pricing, } = singleData;
 
         document.getElementById('modal-body').innerHTML = `
         
@@ -83,45 +84,65 @@ const showSimgleData = (singleData) => {
                     <div class="card-body">
                       <h5 class="card-title">${description}</h5>
                       
-                      <div class = "d-flex justify-content-evenly container align-items-center gap-1 p-1">
+        <div class = "d-flex justify-content-evenly container align-items-center gap-1 mt-3 p-1">
 
                       <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <small class = "m-0 p-0">${pricing[0].price}</small>
-                      <small class = "m-0 p-0">${pricing[0].plan}</small>
+                      <p class = "m-0 fw-bold p-0">${pricing[0].price} </p>
+                      <p class = "m-0 fw-bold p-0">${pricing[0].plan }</p>
                       </div>
 
                       <div class = "  bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <small class = "m-0 p-0">${pricing[1].price}</small>
-                      <small class = "m-0 p-0">${pricing[1].plan}</small>
+                      <p class = "m-0 fw-bold p-0">${pricing[1].price}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing[1].plan}</p>
                       </div>
 
                       <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <small class = "m-0 p-0">${pricing[2].price.slice(0, 10)}</small>
-                      <small class = "m-0 p-0">${pricing[2].plan}</small>
+                      <p class = "m-0 fw-bold p-0">${pricing[2].price.slice(0, 10)}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing[2].plan}</p>
                       </div>
                       
                       
-                      <div></div>
-                      <div></div>
-                      
-                      </div>
+        </div>
 
-
-                      <div></div>
-                      
-
-
-
-
-
-
-
-
-
-
-</div>
-</div>
+        <div class = "d-flex gap-2 justify-content-around align-items-center mt-3">
+                <div>
+                        <h5>Features</h5>
+                        <li class ="text-sm"><small>${singleData.features[1].feature_name}</small> </li>
+                        <li class ="text-sm"><small>${singleData.features[2].feature_name}</small> </li>
+                        <li class ="text-sm"><small>${singleData.features[2].feature_name}</small> </li>
+                        
+                 </div>
+         
+                <div>
+                        <h5>Integration</h5>
+                        <li class = "text-sm"><small>${integrations[0]}</small></li>
+                        <li class = "text-sm"><small>${integrations[1]}</small></li>
+                        <li class = "text-sm"><small>${integrations[2]}</small></li>
+                        
+                         
                 </div>
+        </div>
+
+                      
+                       
+
+
+                      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+    </div>
+  </div>
+</div>
                 <div class="col-sm-6">
                   <div class="card">
                     <div class="card-body">
