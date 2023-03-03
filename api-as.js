@@ -93,8 +93,8 @@ const showSimgleData = (singleData) => {
                       </div>
 
                       <div class = "  bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <p class = "m-0 fw-bold p-0">${pricing[1].price ? pricing[1].price : "no data"}</p>
-                      <p class = "m-0 fw-bold p-0">${pricing[1].plan? pricing[1].plan : "not data"}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing[1].price ? pricing[1].price : "no cost"}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing[1].plan? pricing[1].plan  : "not cost"}</p>
                       </div>
 
                       <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
@@ -110,15 +110,15 @@ const showSimgleData = (singleData) => {
                         <h5>Features</h5>
                         <li class ="text-sm"><small>${singleData.features[1].feature_name}</small> </li>
                         <li class ="text-sm"><small>${singleData.features[2].feature_name}</small> </li>
-                        <li class ="text-sm"><small>${singleData.features[2].feature_name}</small> </li>
+                        <li class ="text-sm"><small>${singleData.features[3].feature_name}</small> </li>
                         
                  </div>
          
                 <div>
                         <h5>Integration</h5>
-                        <li class = "text-sm"><small>${integrations[0]?integrations[0] : "not data"}</small></li>
-                        <li class = "text-sm"><small>${integrations[1]?integrations[0] : "not data"}</small></li>
-                        <li class = "text-sm"><small>${integrations[2]?integrations[0] : "not data"}</small></li>
+                        <li class = "text-sm"><small>${integrations[0]}</small></li>
+                        <li class = "text-sm"><small>${integrations[1]}</small></li>
+                        <li class = "text-sm"><small>${integrations[2]}</small></li>
                         
                          
                 </div>
@@ -130,7 +130,13 @@ const showSimgleData = (singleData) => {
                 <div class="col-sm-6 ">
                   <div class="card h-100 p-3">
                     <div class="card-body">
-                    <img src=" ${singleData.image_link[0]}" class="card-img-top" alt="...">
+                     
+                    <div>
+                    <img src=" ${singleData.image_link[0]}" class="card-img-top " alt="...">
+                    <div class = " text-warning  p-2 rounded " style ="position:absolute; top: 46px; right:46px;">${singleData.accuracy.score? accuracy.score : ""}</div>
+                    </div>
+                   
+                 
                     <h5 class = "text-center mt-3">${singleData.input_output_examples[0].input}</h5>
                     <p class = "text-center mt-3">${singleData.input_output_examples[1].input}</p>
                     </div>
