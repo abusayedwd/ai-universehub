@@ -107,17 +107,17 @@ const showSimgleData = (singleData) => {
 
                       <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
                       <p class = "m-0 fw-bold p-0">
-                      ${pricing? pricing[0].price : "cost of free"} </p>
+                      ${pricing? pricing[0].price : "cost of free/"} </p>
                       <p class = "m-0 fw-bold p-0">${pricing ? pricing[0].plan : "free" }</p>
                       </div>
 
                       <div class = "  bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <p class = "m-0 fw-bold p-0">${pricing? pricing[1].price : "cost of free"}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing? pricing[1].price : "cost of free/"}</p>
                       <p class = "m-0 fw-bold p-0">${pricing? pricing[1].plan  : "pro"}</p>
                       </div>
 
                       <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <p class = "m-0 fw-bold p-0">${pricing?pricing[2].price.slice(0, 10): "cost of free"}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing?pricing[2].price.slice(0, 10): "cost of free/"}</p>
                       <p class = "m-0 fw-bold p-0">${pricing? pricing[2].plan : "enterprise"}</p>
                       </div>
                       
