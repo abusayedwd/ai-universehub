@@ -7,12 +7,24 @@ const universDataLoad = async () => {
         const res = await fetch(url);
         const data = await res.json();
         showUnuversData(data.data.tools.slice(0, 6))
+
         document.getElementById('spinner').classList.add("d-none");
         document.getElementById('showall-btn').classList.remove("d-none")
 }
 
+const sortByDate = () => {
+        fetch('https://openapi.programming-hero.com/api/ai/tools')
+            .then(res => res.json())
+        .then(data => {
+            data.data.tools.sort(function (a,b){
+                return new Date(a.published_in) - new Date(b.published_in);
+            });
+            showUnuversData(data.data.tools.slice(0, 6))
+        })
+    }
+
 const showUnuversData = (data) => {
-        // console.log(data)
+        // console.log(data[0])
         const cardContainer = document.getElementById('card-container');
         cardContainer.innerHTML = '';
         data.forEach(element => {
@@ -28,7 +40,7 @@ const showUnuversData = (data) => {
         <h5 class="card-title fw-bold"> Features</h5>
          <small class="card-text  m-0 p-0">1. ${features[0]}</small> <br/>
         <small class="card-text  m-0 p-0">2. ${features[1].slice(0 ,25)}</small> <br/>
-        <small class="card-text  m-0 p-0">3. ${features[2]}</small>
+        <small class="card-text  m-0 p-0">3. ${features[2]? features[2] : "no data"}</small>
         <hr/>
         </div>
 
@@ -62,8 +74,8 @@ const showAllData = () => {
         .then(data => {
                 showUnuversData(data.data.tools); 
                 document.getElementById('showall-btn').classList.add('d-none');    
-        })
-}
+        });
+};
 // show singledata ui.....
 
 const singleDataLoad = (id) => {
@@ -109,8 +121,8 @@ const showSimgleData = (singleData) => {
                       
         </div>
 
-        <div class = "d-flex gap-2 justify-content-around align-items-center mt-3">
-                <div>
+        <div class = "row row cols-1 row-cols-md-2  mt-3">
+                <div >
                         <h5>Features</h5>
                         <li class ="text-sm"><small>${singleData.features[1].feature_name}</small> </li>
                         <li class ="text-sm"><small>${singleData.features[2].feature_name}</small> </li>
@@ -118,7 +130,7 @@ const showSimgleData = (singleData) => {
                         
                  </div>
          
-                <div>
+                <div >
                         <h5>Integration</h5>
                         <li class = "text-sm"><small>${integrations[0] ? integrations[0] : "not data"}</small></li>
                         <li class = "text-sm"><small>${integrations[1]  ? integrations[1] : "not data"}</small></li>
@@ -137,12 +149,12 @@ const showSimgleData = (singleData) => {
                      
                     <div>
                     <img src=" ${singleData.image_link[0]}" class="card-img-top " alt="...">
-                    <div class = " text-warning bg-danger p-1 rounded " style ="position:absolute; top: 40px; right:50px;">${singleData.accuracy.score? accuracy.score : "0"}% accuracy</div>
+                    <div class = " text-warning bg-danger p-1 rounded " style ="position:absolute; top: 40px; right:50px;">${singleData.accuracy.score*100? accuracy.score*100 : "0"}% accuracy</div>
                     </div>
                    
                  
                     <h5 class = "text-center mt-3">${singleData.input_output_examples[0].input}</h5>
-                    <p class = "text-center mt-3">${singleData.input_output_examples[1].input}</p>
+                    <p class = "text-center mt-3">${singleData.input_output_examples[0].output}</p>
                     </div>
                   </div>
                 </div>
