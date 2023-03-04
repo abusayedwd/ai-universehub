@@ -18,8 +18,11 @@ const sortByDate = () => {
         .then(data => {
             data.data.tools.sort(function (a,b){
                 return new Date(a.published_in) - new Date(b.published_in);
+                
+
             });
-            showUnuversData(data.data.tools.slice)
+            showUnuversData(data.data.tools)
+            document.getElementById('showall-btn').classList.add("d-none")
         })
     }
 
@@ -34,7 +37,7 @@ const showUnuversData = (data) => {
                 const createDiv = document.createElement('div');
                 //        createDiv.classList.add('col') 
                 createDiv.innerHTML = `
-         <div class="card" style="width: full; height: 550px">
+         <div class="card" style="width:full; height: 550px">
                 <img src=" ${image}" class="card-img-top p-3 h-50 img-fluid" alt="...">
                 <div class="card-body">
         <h5 class="card-title fw-bold"> Features</h5>
