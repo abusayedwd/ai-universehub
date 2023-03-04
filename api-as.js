@@ -19,7 +19,7 @@ const sortByDate = () => {
             data.data.tools.sort(function (a,b){
                 return new Date(a.published_in) - new Date(b.published_in);
             });
-            showUnuversData(data.data.tools.slice(0, 6))
+            showUnuversData(data.data.tools.slice)
         })
     }
 
@@ -90,7 +90,7 @@ const singleDataLoad = (id) => {
 const showSimgleData = (singleData) => {
         console.log(singleData)
 
-        const {accuracy, description, integrations, pricing } = singleData;
+        const {accuracy, description, integrations, pricing, input_output_examples, } = singleData;
 
         document.getElementById('modal-body').innerHTML = `
         
@@ -104,18 +104,18 @@ const showSimgleData = (singleData) => {
 
                       <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
                       <p class = "m-0 fw-bold p-0">
-                      ${pricing[0].price ? pricing[0].price : "cost of free"} </p>
-                      <p class = "m-0 fw-bold p-0">${pricing[0].plan ? pricing[0].plan : "noooo" }</p>
+                      ${pricing? pricing[0].price : "cost of free"} </p>
+                      <p class = "m-0 fw-bold p-0">${pricing ? pricing[0].plan : "free" }</p>
                       </div>
 
                       <div class = "  bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <p class = "m-0 fw-bold p-0">${pricing[1].price ? pricing[1].price : "no cost"}</p>
-                      <p class = "m-0 fw-bold p-0">${pricing[1].plan? pricing[1].plan  : "not cost"}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing? pricing[1].price : "cost of free"}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing? pricing[1].plan  : "pro"}</p>
                       </div>
 
                       <div class = " bg-warning-subtle text-center p-1 shadow-lg rounded">
-                      <p class = "m-0 fw-bold p-0">${pricing[2].price.slice(0, 10)}</p>
-                      <p class = "m-0 fw-bold p-0">${pricing[2].plan}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing?pricing[2].price.slice(0, 10): "cost of free"}</p>
+                      <p class = "m-0 fw-bold p-0">${pricing? pricing[2].plan : "enterprise"}</p>
                       </div>
                       
                       
@@ -132,9 +132,9 @@ const showSimgleData = (singleData) => {
          
                 <div >
                         <h5>Integration</h5>
-                        <li class = "text-sm"><small>${integrations[0] ? integrations[0] : "not data"}</small></li>
-                        <li class = "text-sm"><small>${integrations[1]  ? integrations[1] : "not data"}</small></li>
-                        <li class = "text-sm"><small>${integrations[2]  ? integrations[2] : "not data"}</small></li>
+                        <li class = "text-sm"><small>${integrations ? integrations[0] : "No Data Found"}</small></li>
+                        <li class = "text-sm"><small>${integrations ? integrations[1] : "No Data Found"}</small></li>
+                        <li class = "text-sm"><small>${integrations ? integrations[2] : "No Data Found"}</small></li>
                         
                          
                 </div>
@@ -149,12 +149,13 @@ const showSimgleData = (singleData) => {
                      
                     <div>
                     <img src=" ${singleData.image_link[0]}" class="card-img-top " alt="...">
-                    <div class = " text-warning bg-danger p-1 rounded " style ="position:absolute; top: 40px; right:50px;">${singleData.accuracy.score*100? accuracy.score*100 : "0"}% accuracy</div>
-                    </div>
+                 ${accuracy.score? `<div class = " text-warning bg-danger p-1 rounded " style ="position:absolute; top: 40px; right:50px;">${accuracy.score*100}% accuracy</div>` : '' }
+
+                    
                    
                  
-                    <h5 class = "text-center mt-3">${singleData.input_output_examples[0].input}</h5>
-                    <p class = "text-center mt-3">${singleData.input_output_examples[0].output}</p>
+                    <h5 class = "text-center mt-3">${input_output_examples? input_output_examples[0].input : "Can you give any example?"}</h5>
+                    <p class = "text-center mt-3">${input_output_examples?input_output_examples[0].output : 'No! Not Yet! Take a break!!!'}</p>
                     </div>
                   </div>
                 </div>
