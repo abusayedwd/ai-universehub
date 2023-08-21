@@ -93,7 +93,8 @@ const singleDataLoad = (id) => {
 const showSimgleData = (singleData) => {
         console.log(singleData)
 
-        const {accuracy, description, integrations, pricing, input_output_examples, } = singleData;
+        const {accuracy, description, integrations,  pricing, input_output_examples, } = singleData;
+         
 
         document.getElementById('modal-body').innerHTML = `
         
@@ -135,11 +136,11 @@ const showSimgleData = (singleData) => {
          
                 <div >
                         <h5>Integration</h5>
-                        <li class = "text-sm"><small>${integrations ? integrations[0] : "No Data Found"}</small></li>
-                        <li class = "text-sm"><small>${integrations ? integrations[1] : "No Data Found"}</small></li>
-                        <li class = "text-sm"><small>${integrations ? integrations[2] : "No Data Found"}</small></li>
-                        
-                         
+                           
+                                 <li class = "text-sm"><small>${integrations? integrations[0] : " No Data Found"} </small></li> 
+                                 <li class = "text-sm"><small>${integrations? integrations[1] : " "} </small></li> 
+                                 <li class = "text-sm"><small>${integrations? integrations[2] : "  "} </small></li> 
+ 
                 </div>
         </div>
   
